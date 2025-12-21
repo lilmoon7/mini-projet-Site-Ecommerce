@@ -1,0 +1,87 @@
+<header class="site-header">
+  <nav class="navbar">
+    <a class="logo" style="cursor: pointer;"> E-SHOP </a>
+    <div class="nav-icons">
+      <a class="nav-link"  (click)="goToSignIn()"  style="cursor: pointer;"> Connexion</a>
+      <a class="cart-icon feature-card" (click)="goToCart()" style="cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="icon-svg"
+             fill="none"
+             viewBox="0 0 24 24"
+             stroke="currentColor">
+          <path stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5
+             M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17
+             m0 0a2 2 0 100 4 2 2 0 000-4
+             zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span class="cart-count-badge">{{ cartItemCount }}</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<div class="home-container">
+  <div class="welcome-section">
+    <h1>Bienvenue sur notre Boutique</h1>
+    <h4>Découvrez nos produits exceptionnels à prix compétitifs</h4>
+  </div>
+  <section class="products-section">
+    <div class="section-header">
+      <h2>Nos Produits</h2>
+      <p>Découvrez notre sélection</p>
+    </div>
+
+    <div class="no-products" *ngIf="products.length === 0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <p>Aucun produit disponible pour le moment</p>
+    </div>
+
+
+    <div class="products-grid" *ngIf="products.length > 0">
+      <div class="product-card" *ngFor="let product of products">
+        <div (click)="getdetailes()">
+        <div class="product-image">
+          <img [src]="getImageUrl(product)" [alt]="product.productTitle" />
+          <div class="product-badge">{{ product.category }}</div>
+        </div>
+</div>
+        <div class="product-content">
+          <h3 class="product-title">{{ product.productTitle }}</h3>
+          <p class="product-id">ID: {{ product.productID }}</p>
+
+          <div class="product-footer"  >
+            <div class="product-price">{{ getNumericPrice(product.prouctPrice) }}</div>
+            <button (click)="addToCart(product,  $event)" class="btn-add-cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Ajouter
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <p>&copy; 2025 E-Shop. Tous droits réservés.</p>
+    <div class="footer-links">
+      <a href="#" class="footer-link">Politique de confidentialité</a>
+      <a href="#" class="footer-link">Termes d'utilisation</a>
+      <a href="#" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,25 @@
+<div class="container">
+    <h1 class="header">Votre Panier</h1>
+    <div class="empty-cart" *ngIf="cartItems.length === 0">
+      Votre Panier est vide
+    </div>
+    <ul class="cart" *ngIf="cartItems.length > 0">
+      <li class="cart-item" *ngFor="let product of cartItems">
+        <div class="product">
+          <div class="product-details">
+            <img [src]="getImageUrl(product)" [alt]="product.productTitle" />
+            <div class="product-info">
+              <div class="name">{{ product.productTitle }}</div>
+              <div class="description">{{ product.productTitle }}</div>
+              <div class="category">Part Type: {{ product.category }}</div>
+            </div>
+          </div>
+          <div class="price">
+            <div> {{ product.prouctPrice }} </div>
+
+            <button (click)="removeFromCart(product)">Supprimer</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>

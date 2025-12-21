@@ -1,0 +1,23 @@
+<div class="container">
+    <form #signInForm="ngForm" class="form" (ngSubmit)="signIn()">
+      <div class="sign-in">Connexion</div>
+      <div class="sub-text">Pour en savoir plus...</div>
+      <input name="email" required email #email="ngModel" [(ngModel)]="credentials.email" placeholder="Email Address"
+        type="text" />
+      <em class="error" *ngIf="email.errors?.['required'] && email.touched">L’Email est obligatoire</em>
+      <em class="error" *ngIf="email.errors?.['email'] && email.touched">Doit être le format d'Email valide</em>
+      <div class="container">
+      </div>
+      <input name="password" required #password="ngModel" [(ngModel)]="credentials.password" placeholder="Password"
+        type="password" />
+      <em class="error" *ngIf="password.invalid && password.touched">Le mot de passe est requis</em>
+      <div class="buttons">
+        <button type="submit" [disabled]="signInForm.form.invalid" class="button cta">
+          Connexion
+        </button>
+      </div>
+      <div class="signInError" *ngIf="signInError">
+        Erreur de connexion ! Veuillez réessayer.
+      </div>
+    </form>
+  </div>
